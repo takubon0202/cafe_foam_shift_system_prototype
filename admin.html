@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="共創カフェ 管理画面">
+    <title>管理画面 | 共創カフェ</title>
+    <link rel="stylesheet" href="cafe-unified-system/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- ヘッダー -->
+        <header class="header">
+            <h1 class="header__title">共創カフェ</h1>
+            <p class="header__subtitle">管理画面</p>
+        </header>
+
+        <!-- ナビゲーション -->
+        <nav class="nav">
+            <a href="index.html" class="nav__link">シフト提出</a>
+            <a href="clock.html" class="nav__link">打刻</a>
+            <a href="calendar.html" class="nav__link">カレンダー</a>
+            <a href="admin.html" class="nav__link nav__link--active">管理</a>
+        </nav>
+
+        <!-- 認証画面 -->
+        <section class="auth" id="authSection">
+            <div class="auth__card">
+                <h2 class="auth__title">管理者ログイン</h2>
+                <div class="form-group">
+                    <input type="password" id="adminPassword" class="form-input" placeholder="パスワード">
+                </div>
+                <button type="button" id="btnLogin" class="btn btn--primary btn--full">ログイン</button>
+                <p class="auth__error" id="authError"></p>
+            </div>
+        </section>
+
+        <!-- 管理画面本体 -->
+        <main class="admin" id="adminSection" style="display: none;">
+            <!-- タブ -->
+            <div class="tabs">
+                <button class="tab tab--active" data-tab="attendance">勤怠一覧</button>
+                <button class="tab" data-tab="weekly">週別確認</button>
+                <button class="tab" data-tab="shifts">シフト管理</button>
+                <button class="tab" data-tab="staff">スタッフ</button>
+            </div>
+
+            <!-- 勤怠一覧タブ -->
+            <section class="tab-content tab-content--active" id="tabAttendance">
+                <!-- フィルター -->
+                <div class="card">
+                    <div class="filter-row">
+                        <div class="form-group form-group--inline">
+                            <label for="filterDate" class="form-label">日付</label>
+                            <input type="date" id="filterDate" class="form-input">
+                        </div>
+                        <div class="form-group form-group--inline">
+                            <label for="filterName" class="form-label">名前</label>
+                            <select id="filterName" class="form-select">
+                                <option value="">全員</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" id="btnSearch" class="btn btn--primary btn--small">検索</button>
+                        <button type="button" id="btnClear" class="btn btn--secondary btn--small">クリア</button>
+                    </div>
+                </div>
+
+                <!-- 集計情報 -->
+                <div class="summary-grid">
+                    <div class="summary-card">
+                        <p class="summary-card__value" id="totalAttendance">0</p>
+                        <p class="summary-card__label">出勤回数</p>
+                    </div>
+                    <div class="summary-card">
+                        <p class="summary-card__value" id="totalHours">0:00</p>
+                        <p class="summary-card__label">合計時間</p>
+                    </div>
+                    <div class="summary-card">
+                        <p class="summary-card__value" id="lateCount">0</p>
+                        <p class="summary-card__label">遅刻</p>
+                    </div>
+                    <div class="summary-card">
+                        <p class="summary-card__value" id="earlyLeaveCount">0</p>
+                        <p class="summary-card__label">早退</p>
+                    </div>
+                </div>
+
+                <!-- データテーブル -->
+                <div class="card">
+                    <div class="card__header">
+                        <h3 class="card__title">打刻一覧</h3>
+                        <button type="button" id="btnExportCsv" class="btn btn--small btn--primary">CSV出力</button>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="table" id="attendanceTable">
+                            <thead>
+                                <tr>
+                                    <th>日付</th>
+                                    <th>名前</th>
+                                    <th>枠</th>
+                                    <th>出勤</th>
+                                    <th>退勤</th>
+                                    <th>状態</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody">
+                                <tr>
+                                    <td colspan="6" class="table__empty">データを読み込み中...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 週別確認タブ -->
+            <section class="tab-content" id="tabWeekly">
+                <div class="card">
+                    <h2 class="card__title">週別シフト確認</h2>
+                    <p class="card__note">各週で複数回シフトが登録されているメンバーを検出します</p>
+                    <div id="weeklyViolations" class="violations-list">
+                        <!-- JavaScriptで生成 -->
+                    </div>
+                </div>
+                <div id="weeklyOverview" class="weekly-overview">
+                    <!-- JavaScriptで生成 -->
+                </div>
+            </section>
+
+            <!-- シフト管理タブ -->
+            <section class="tab-content" id="tabShifts">
+                <!-- 日付選択 -->
+                <div class="card">
+                    <div class="form-group">
+                        <label for="shiftDate" class="form-label">日付を選択</label>
+                        <select id="shiftDate" class="form-select">
+                            <!-- JavaScriptで生成 -->
+                        </select>
+                    </div>
+                </div>
+
+                <!-- シフト状況 -->
+                <div class="card" id="shiftStatusCard">
+                    <h3 class="card__title" id="shiftDateTitle">-</h3>
+
+                    <div class="shift-slot-admin">
+                        <div class="shift-slot-admin__header">
+                            <span class="shift-slot-admin__label">午前A（10:00〜11:30）</span>
+                            <span class="shift-slot-admin__count" id="AM_ACount">0/3</span>
+                        </div>
+                        <div class="shift-slot-admin__staff" id="AM_AStaff">
+                            <p class="shift-slot-admin__empty">申請者なし</p>
+                        </div>
+                    </div>
+
+                    <div class="shift-slot-admin">
+                        <div class="shift-slot-admin__header">
+                            <span class="shift-slot-admin__label">午前B（11:00〜12:30）</span>
+                            <span class="shift-slot-admin__count" id="AM_BCount">0/3</span>
+                        </div>
+                        <div class="shift-slot-admin__staff" id="AM_BStaff">
+                            <p class="shift-slot-admin__empty">申請者なし</p>
+                        </div>
+                    </div>
+
+                    <div class="shift-slot-admin">
+                        <div class="shift-slot-admin__header">
+                            <span class="shift-slot-admin__label">午後A（15:00〜16:30）</span>
+                            <span class="shift-slot-admin__count" id="PM_ACount">0/3</span>
+                        </div>
+                        <div class="shift-slot-admin__staff" id="PM_AStaff">
+                            <p class="shift-slot-admin__empty">申請者なし</p>
+                        </div>
+                    </div>
+
+                    <div class="shift-slot-admin">
+                        <div class="shift-slot-admin__header">
+                            <span class="shift-slot-admin__label">午後B（15:30〜17:00）</span>
+                            <span class="shift-slot-admin__count" id="PM_BCount">0/3</span>
+                        </div>
+                        <div class="shift-slot-admin__staff" id="PM_BStaff">
+                            <p class="shift-slot-admin__empty">申請者なし</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- シフト一括出力 -->
+                <div class="card">
+                    <h3 class="card__title">シフト一括出力</h3>
+                    <button type="button" id="btnExportShiftCsv" class="btn btn--primary btn--full">全シフトをCSV出力</button>
+                </div>
+            </section>
+
+            <!-- スタッフ管理タブ -->
+            <section class="tab-content" id="tabStaff">
+                <div class="card">
+                    <h3 class="card__title">登録スタッフ一覧</h3>
+                    <div class="staff-list" id="staffList">
+                        <!-- JavaScriptで生成 -->
+                    </div>
+                </div>
+
+                <!-- スタッフ別統計 -->
+                <div class="card">
+                    <h3 class="card__title">スタッフ別シフト統計</h3>
+                    <div class="table-wrapper">
+                        <table class="table" id="staffStatsTable">
+                            <thead>
+                                <tr>
+                                    <th>学生番号</th>
+                                    <th>名前</th>
+                                    <th>申請枠数</th>
+                                    <th>出勤回数</th>
+                                </tr>
+                            </thead>
+                            <tbody id="staffStatsBody">
+                                <!-- JavaScriptで生成 -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- データ管理 -->
+            <section class="card card--danger">
+                <h2 class="card__title">データ管理</h2>
+                <div class="button-group">
+                    <button type="button" id="btnExportData" class="btn btn--secondary">JSONエクスポート</button>
+                    <button type="button" id="btnClearData" class="btn btn--danger">データクリア</button>
+                </div>
+            </section>
+
+            <!-- データ移行 -->
+            <section class="migration-section" id="migrationSection">
+                <h3>旧システムからのデータ移行</h3>
+                <p class="migration-info">attendance-system または cafe-shift-system からデータを移行します。</p>
+                <button type="button" id="btnMigrate" class="btn btn--primary btn--full">データを移行する</button>
+            </section>
+
+            <!-- ログアウト -->
+            <div class="logout-section">
+                <button type="button" id="btnLogout" class="btn btn--secondary btn--full">ログアウト</button>
+            </div>
+        </main>
+
+        <!-- ローディング -->
+        <div class="loading" id="loading" style="display: none;">
+            <div class="loading__spinner"></div>
+            <p class="loading__text">読み込み中...</p>
+        </div>
+    </div>
+
+    <script src="cafe-unified-system/js/config.js"></script>
+    <script src="cafe-unified-system/js/utils.js"></script>
+    <script src="cafe-unified-system/js/admin.js"></script>
+</body>
+</html>

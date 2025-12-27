@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="共創カフェ シフトカレンダー">
+    <title>カレンダー | 共創カフェ</title>
+    <link rel="stylesheet" href="cafe-unified-system/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- ヘッダー -->
+        <header class="header">
+            <h1 class="header__title">共創カフェ</h1>
+            <p class="header__subtitle">シフトカレンダー</p>
+        </header>
+
+        <!-- ナビゲーション -->
+        <nav class="nav">
+            <a href="index.html" class="nav__link">シフト提出</a>
+            <a href="clock.html" class="nav__link">打刻</a>
+            <a href="calendar.html" class="nav__link nav__link--active">カレンダー</a>
+            <a href="admin.html" class="nav__link">管理</a>
+        </nav>
+
+        <main class="calendar-page">
+            <!-- 営業期間情報 -->
+            <section class="period-info" id="periodInfo">
+                <!-- JavaScriptで生成 -->
+            </section>
+
+            <!-- 月ナビゲーション -->
+            <section class="calendar-nav">
+                <div class="calendar-nav__controls">
+                    <button type="button" id="btnPrevMonth" class="calendar-nav__btn" aria-label="前月">
+                        <span class="calendar-nav__arrow">&lt;</span>
+                    </button>
+                    <h2 class="calendar-nav__title" id="monthTitle">2026年1月</h2>
+                    <button type="button" id="btnNextMonth" class="calendar-nav__btn" aria-label="次月">
+                        <span class="calendar-nav__arrow">&gt;</span>
+                    </button>
+                </div>
+                <button type="button" id="btnToday" class="calendar-nav__today" aria-label="今日の日付に移動">今日</button>
+            </section>
+
+            <!-- フィルター -->
+            <section class="card">
+                <p class="filter-hint">自分の名前を選ぶと、自分のシフトが強調表示され、キャンセルもできます</p>
+                <div class="filter-row">
+                    <div class="form-group form-group--inline">
+                        <label for="filterStaff" class="form-label">スタッフ</label>
+                        <select id="filterStaff" class="form-select">
+                            <option value="">全員</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 凡例 -->
+            <section class="legend-section">
+                <p class="legend-note">日付の下の数字は「申請済み/必要人数」を表しています</p>
+                <div class="legend">
+                    <div class="legend__item">
+                        <span class="legend__dot legend__dot--mine"></span>
+                        <span>自分のシフト</span>
+                    </div>
+                    <div class="legend__item">
+                        <span class="legend__dot legend__dot--full"></span>
+                        <span>スタッフ足りてます</span>
+                    </div>
+                    <div class="legend__item">
+                        <span class="legend__dot legend__dot--available"></span>
+                        <span>募集中（あと少し）</span>
+                    </div>
+                    <div class="legend__item">
+                        <span class="legend__dot legend__dot--shortage"></span>
+                        <span>スタッフ募集中</span>
+                    </div>
+                    <div class="legend__item">
+                        <span class="legend__dot legend__dot--closed"></span>
+                        <span>お休み</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- カレンダー -->
+            <section class="calendar-grid" id="calendarGrid">
+                <!-- JavaScriptで生成 -->
+            </section>
+
+            <!-- 選択日の詳細 -->
+            <section class="card" id="dayDetail" style="display: none;">
+                <h2 class="card__title" id="selectedDateTitle">-</h2>
+                <div class="day-detail" id="dayDetailContent">
+                    <!-- JavaScriptで生成 -->
+                </div>
+            </section>
+
+            <!-- 統計 -->
+            <section class="card">
+                <h2 class="card__title">シフト統計</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <p class="stat-item__value" id="statTotalSlots">0</p>
+                        <p class="stat-item__label">総枠数</p>
+                    </div>
+                    <div class="stat-item">
+                        <p class="stat-item__value" id="statFilledSlots">0</p>
+                        <p class="stat-item__label">申請済み</p>
+                    </div>
+                    <div class="stat-item">
+                        <p class="stat-item__value" id="statShortageSlots">0</p>
+                        <p class="stat-item__label">人員不足</p>
+                    </div>
+                    <div class="stat-item">
+                        <p class="stat-item__value" id="statMyShifts">0</p>
+                        <p class="stat-item__label">自分の枠</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- ローディング -->
+        <div class="loading" id="loading" style="display: none;">
+            <div class="loading__spinner"></div>
+            <p class="loading__text">読み込み中...</p>
+        </div>
+    </div>
+
+    <script src="cafe-unified-system/js/config.js"></script>
+    <script src="cafe-unified-system/js/utils.js"></script>
+    <script src="cafe-unified-system/js/calendar.js"></script>
+</body>
+</html>

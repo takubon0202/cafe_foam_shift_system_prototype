@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="共創カフェ シフト提出システム">
+    <title>シフト提出 | 共創カフェ</title>
+    <link rel="stylesheet" href="cafe-unified-system/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- ヘッダー -->
+        <header class="header">
+            <h1 class="header__title">共創カフェ</h1>
+            <p class="header__subtitle">シフト提出</p>
+        </header>
+
+        <!-- ナビゲーション -->
+        <nav class="nav">
+            <a href="index.html" class="nav__link nav__link--active">シフト提出</a>
+            <a href="clock.html" class="nav__link">打刻</a>
+            <a href="calendar.html" class="nav__link">カレンダー</a>
+            <a href="admin.html" class="nav__link">管理</a>
+        </nav>
+
+        <main>
+            <!-- シフト提出の流れ（常時表示） -->
+            <section class="card card--guide" id="onboardingSection">
+                <h2 class="card__title">シフト提出の流れ</h2>
+                <ol class="guide-steps">
+                    <li class="guide-step">
+                        <span class="guide-step__num">1</span>
+                        <span class="guide-step__text">下の一覧から<strong>自分の名前</strong>を選択</span>
+                    </li>
+                    <li class="guide-step">
+                        <span class="guide-step__num">2</span>
+                        <span class="guide-step__text">各週で<strong>1つだけ</strong>シフト枠を選ぶ</span>
+                    </li>
+                    <li class="guide-step">
+                        <span class="guide-step__num">3</span>
+                        <span class="guide-step__text">「シフトを提出する」ボタンを押す</span>
+                    </li>
+                </ol>
+                <p class="guide-note">1週間に1枠（90分）だけ働けます。午前A/Bと午後A/Bは開始時間が違うだけで、どちらを選んでもOKです。</p>
+            </section>
+
+            <!-- メンバー選択 -->
+            <section class="card">
+                <h2 class="card__title">1. 自分の名前を選択</h2>
+                <div class="form-group">
+                    <label for="memberSearch" class="form-label">名前で検索</label>
+                    <div class="search-input-wrapper">
+                        <input type="text" id="memberSearch" class="form-input" placeholder="名前を入力（ひらがな・漢字OK）">
+                        <button type="button" id="btnClearSearch" class="btn--clear" aria-label="検索をクリア" style="display: none;">×</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="memberSelect" class="form-label">スタッフ一覧</label>
+                    <select id="memberSelect" class="form-select">
+                        <option value="">-- 自分の名前を選んでください --</option>
+                    </select>
+                </div>
+                <p class="selected-name" id="selectedName"></p>
+            </section>
+
+            <!-- シフト選択（週ごと） -->
+            <section id="shiftSection" style="display: none;">
+                <!-- 週ごとのセクションはJavaScriptで生成 -->
+            </section>
+
+            <!-- 提出ボタン -->
+            <section class="card" id="submitSection" style="display: none;">
+                <h2 class="card__title">選択内容の確認</h2>
+                <div id="selectionSummary" class="selection-summary">
+                    <!-- JavaScriptで生成 -->
+                </div>
+                <button type="button" id="btnSubmit" class="btn btn--primary btn--full" disabled>
+                    シフトを提出する
+                </button>
+            </section>
+
+            <!-- 提出済みシフト一覧（キャンセル機能付き） -->
+            <section class="card" id="myShiftsSection" style="display: none;">
+                <h2 class="card__title">提出済みシフト</h2>
+                <p class="section-note">キャンセルしたいシフトの「キャンセル」ボタンを押してください</p>
+                <div id="myShiftsList" class="my-shifts-list">
+                    <!-- JavaScriptで生成 -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="cafe-unified-system/js/config.js"></script>
+    <script src="cafe-unified-system/js/utils.js"></script>
+    <script src="cafe-unified-system/js/submit.js"></script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="共創カフェ 打刻システム">
+    <title>打刻 | 共創カフェ</title>
+    <link rel="stylesheet" href="cafe-unified-system/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- ヘッダー -->
+        <header class="header">
+            <h1 class="header__title">共創カフェ</h1>
+            <p class="header__subtitle">勤怠打刻</p>
+            <p class="header__date" id="currentDate"></p>
+        </header>
+
+        <!-- ナビゲーション -->
+        <nav class="nav">
+            <a href="index.html" class="nav__link">シフト提出</a>
+            <a href="clock.html" class="nav__link nav__link--active">打刻</a>
+            <a href="calendar.html" class="nav__link">カレンダー</a>
+            <a href="admin.html" class="nav__link">管理</a>
+        </nav>
+
+        <!-- 打刻の流れ（常時表示） -->
+        <section class="card card--guide">
+            <h2 class="card__title">打刻の流れ</h2>
+            <ol class="guide-steps">
+                <li class="guide-step">
+                    <span class="guide-step__num">1</span>
+                    <span class="guide-step__text">下の一覧から<strong>自分の名前</strong>を選択</span>
+                </li>
+                <li class="guide-step">
+                    <span class="guide-step__num">2</span>
+                    <span class="guide-step__text">シフト開始時に<strong>「出勤」</strong>ボタンを押す</span>
+                </li>
+                <li class="guide-step">
+                    <span class="guide-step__num">3</span>
+                    <span class="guide-step__text">シフト終了時に<strong>「退勤」</strong>ボタンを押す</span>
+                </li>
+            </ol>
+            <p class="guide-note">シフト開始10分前から出勤できます。遅刻・早退は自動で記録されます。</p>
+        </section>
+
+        <!-- 現在時刻表示 -->
+        <section class="card card--time">
+            <p class="current-time" id="currentTime">--:--:--</p>
+            <p class="current-date" id="currentShift">-</p>
+        </section>
+
+        <!-- 打刻フォーム -->
+        <main class="card">
+            <!-- スタッフ選択 -->
+            <div class="form-group">
+                <label for="staffSelect" class="form-label">スタッフを選択</label>
+                <select id="staffSelect" class="form-select">
+                    <option value="">-- 選択してください --</option>
+                </select>
+            </div>
+
+            <!-- 今日のシフト表示 -->
+            <div class="today-shift" id="todayShift">
+                <p class="today-shift__label">本日のシフト</p>
+                <div class="today-shift__slots" id="todayShiftSlots">
+                    <p class="today-shift__empty">スタッフを選択してください</p>
+                </div>
+            </div>
+
+            <!-- シフト選択 -->
+            <div class="form-group" id="slotSelectGroup" style="display: none;">
+                <label class="form-label">打刻するシフト枠</label>
+                <div class="slot-buttons" id="slotButtons">
+                    <button type="button" class="slot-btn" data-slot="AM_A">
+                        <span class="slot-btn__label">午前A</span>
+                        <span class="slot-btn__time">10:00〜11:30</span>
+                    </button>
+                    <button type="button" class="slot-btn" data-slot="AM_B">
+                        <span class="slot-btn__label">午前B</span>
+                        <span class="slot-btn__time">11:00〜12:30</span>
+                    </button>
+                    <button type="button" class="slot-btn" data-slot="PM_A">
+                        <span class="slot-btn__label">午後A</span>
+                        <span class="slot-btn__time">15:00〜16:30</span>
+                    </button>
+                    <button type="button" class="slot-btn" data-slot="PM_B">
+                        <span class="slot-btn__label">午後B</span>
+                        <span class="slot-btn__time">15:30〜17:00</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- ステータス表示 -->
+            <div class="status" id="statusDisplay">
+                <p class="status__text">スタッフを選択してください</p>
+            </div>
+
+            <!-- 打刻ボタン -->
+            <div class="clock-buttons">
+                <button type="button" id="btnClockIn" class="btn btn--clock-in btn--full" disabled>
+                    出勤
+                </button>
+                <button type="button" id="btnClockOut" class="btn btn--clock-out btn--full" disabled>
+                    退勤
+                </button>
+            </div>
+        </main>
+
+        <!-- 今日の打刻履歴 -->
+        <section class="card">
+            <h2 class="card__title">今日の打刻履歴</h2>
+            <div class="clock-history" id="historyList">
+                <p class="no-history">打刻履歴はありません</p>
+            </div>
+        </section>
+    </div>
+
+    <script src="cafe-unified-system/js/config.js"></script>
+    <script src="cafe-unified-system/js/utils.js"></script>
+    <script src="cafe-unified-system/js/clock.js"></script>
+</body>
+</html>

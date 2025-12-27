@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="KOMOREBI COFFEE - 山形の自家焙煎コーヒーと手作りスイーツのカフェ。地元食材を使った季節のメニューをご用意しています。">
+    <meta name="keywords" content="カフェ,山形,コーヒー,自家焙煎,スイーツ,ランチ">
+    <title>KOMOREBI COFFEE | 山形の自家焙煎カフェ</title>
+
+    <!-- OGP -->
+    <meta property="og:title" content="KOMOREBI COFFEE | 山形の自家焙煎カフェ">
+    <meta property="og:description" content="山形の自家焙煎コーヒーと手作りスイーツのカフェ">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ja_JP">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="header__inner">
+            <a href="#" class="header__logo">
+                <span class="header__logo-main">KOMOREBI</span>
+                <span class="header__logo-sub">COFFEE</span>
+            </a>
+            <nav class="header__nav" aria-label="メインナビゲーション">
+                <ul class="header__nav-list">
+                    <li><a href="#about">私たちについて</a></li>
+                    <li><a href="#menu">メニュー</a></li>
+                    <li><a href="#access">アクセス</a></li>
+                    <li><a href="#contact">お問い合わせ</a></li>
+                </ul>
+            </nav>
+            <button class="header__menu-btn" aria-label="メニューを開く" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ヒーロー -->
+    <section class="hero">
+        <div class="hero__content">
+            <p class="hero__tagline">木漏れ日のような、やさしい時間を</p>
+            <h1 class="hero__title">一杯のコーヒーから<br>始まる物語</h1>
+            <p class="hero__desc">山形の豊かな自然に育まれた豆を<br>一杯ずつ丁寧にお届けします</p>
+            <a href="#menu" class="btn btn--primary">メニューを見る</a>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="about section">
+        <div class="container">
+            <header class="section__header">
+                <span class="section__label">About Us</span>
+                <h2 class="section__title">私たちについて</h2>
+            </header>
+            <div class="about__content">
+                <div class="about__image">
+                    <img src="assets/images/about-image.jpg" alt="店内でコーヒーを淹れる様子" loading="lazy">
+                </div>
+                <div class="about__text">
+                    <h3 class="about__heading">毎日を少し特別にする場所</h3>
+                    <p>KOMOREBI COFFEEは、2018年に山形市内の古民家を改装してオープンした小さなカフェです。</p>
+                    <p>「木漏れ日」という名前には、日常の中にふと差し込む穏やかな光のような、そんな存在でありたいという想いを込めました。</p>
+                    <p>自家焙煎のコーヒー豆は、産地や焙煎度合いにこだわり、一杯ずつハンドドリップでお淹れしています。地元山形の食材を使った手作りのスイーツやフードも、ぜひお試しください。</p>
+                    <ul class="about__features">
+                        <li>自家焙煎コーヒー</li>
+                        <li>地元食材のスイーツ</li>
+                        <li>古民家の落ち着いた空間</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu -->
+    <section id="menu" class="menu section section--alt">
+        <div class="container">
+            <header class="section__header">
+                <span class="section__label">Menu</span>
+                <h2 class="section__title">メニュー</h2>
+            </header>
+            <div class="menu__categories">
+                <div class="menu__category">
+                    <h3 class="menu__category-title">Coffee</h3>
+                    <ul class="menu__list">
+                        <li class="menu__item">
+                            <span class="menu__item-name">ブレンドコーヒー</span>
+                            <span class="menu__item-price">480円</span>
+                        </li>
+                        <li class="menu__item">
+                            <span class="menu__item-name">シングルオリジン（日替わり）</span>
+                            <span class="menu__item-price">580円</span>
+                        </li>
+                        <li class="menu__item">
+                            <span class="menu__item-name">カフェラテ</span>
+                            <span class="menu__item-price">550円</span>
+                        </li>
+                        <li class="menu__item">
+                            <span class="menu__item-name">アイスコーヒー</span>
+                            <span class="menu__item-price">500円</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="menu__category">
+                    <h3 class="menu__category-title">Sweets</h3>
+                    <ul class="menu__list">
+                        <li class="menu__item">
+                            <span class="menu__item-name">季節のタルト</span>
+                            <span class="menu__item-price">520円</span>
+                        </li>
+                        <li class="menu__item">
+                            <span class="menu__item-name">チーズケーキ</span>
+                            <span class="menu__item-price">480円</span>
+                        </li>
+                        <li class="menu__item">
+                            <span class="menu__item-name">スコーン（2個）</span>
+                            <span class="menu__item-price">400円</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="menu__category">
+                    <h3 class="menu__category-title">Food</h3>
+                    <ul class="menu__list">
+                        <li class="menu__item">
+                            <span class="menu__item-name">本日のランチプレート</span>
+                            <span class="menu__item-price">1,100円</span>
+                        </li>
+                        <li class="menu__item">
+                            <span class="menu__item-name">トーストセット</span>
+                            <span class="menu__item-price">700円</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <p class="menu__note">※ 価格はすべて税込です。季節により内容が変わる場合があります。</p>
+        </div>
+    </section>
+
+    <!-- Access -->
+    <section id="access" class="access section">
+        <div class="container">
+            <header class="section__header">
+                <span class="section__label">Access</span>
+                <h2 class="section__title">アクセス</h2>
+            </header>
+            <div class="access__content">
+                <div class="access__info">
+                    <dl class="access__details">
+                        <div class="access__row">
+                            <dt>住所</dt>
+                            <dd>〒990-0000 山形県山形市〇〇町1-2-3</dd>
+                        </div>
+                        <div class="access__row">
+                            <dt>電話</dt>
+                            <dd><a href="tel:023-000-0000">023-000-0000</a></dd>
+                        </div>
+                        <div class="access__row">
+                            <dt>営業時間</dt>
+                            <dd>10:00 - 18:00（L.O. 17:30）</dd>
+                        </div>
+                        <div class="access__row">
+                            <dt>定休日</dt>
+                            <dd>水曜日・第3木曜日</dd>
+                        </div>
+                        <div class="access__row">
+                            <dt>駐車場</dt>
+                            <dd>店舗前に5台分あり</dd>
+                        </div>
+                    </dl>
+                </div>
+                <div class="access__map">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3132.0!2d140.3!3d38.2!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzjCsDEyJzAwLjAiTiAxNDDCsDE4JzAwLjAiRQ!5e0!3m2!1sja!2sjp!4v1234567890"
+                        width="100%"
+                        height="300"
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="店舗の地図">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact section section--alt">
+        <div class="container">
+            <header class="section__header">
+                <span class="section__label">Contact</span>
+                <h2 class="section__title">お問い合わせ</h2>
+            </header>
+            <div class="contact__content">
+                <p class="contact__intro">ご予約・ご質問はお電話またはフォームよりお気軽にどうぞ。</p>
+                <div class="contact__methods">
+                    <a href="tel:023-000-0000" class="contact__tel">
+                        <span class="contact__tel-label">お電話でのご予約</span>
+                        <span class="contact__tel-number">023-000-0000</span>
+                        <span class="contact__tel-note">受付時間: 10:00 - 18:00</span>
+                    </a>
+                </div>
+                <form class="contact__form" action="#" method="post">
+                    <div class="form__group">
+                        <label for="name" class="form__label">お名前 <span class="form__required">必須</span></label>
+                        <input type="text" id="name" name="name" class="form__input" required>
+                    </div>
+                    <div class="form__group">
+                        <label for="email" class="form__label">メールアドレス <span class="form__required">必須</span></label>
+                        <input type="email" id="email" name="email" class="form__input" required>
+                    </div>
+                    <div class="form__group">
+                        <label for="phone" class="form__label">電話番号</label>
+                        <input type="tel" id="phone" name="phone" class="form__input">
+                    </div>
+                    <div class="form__group">
+                        <label for="message" class="form__label">お問い合わせ内容 <span class="form__required">必須</span></label>
+                        <textarea id="message" name="message" class="form__textarea" rows="5" required></textarea>
+                    </div>
+                    <div class="form__submit">
+                        <button type="submit" class="btn btn--primary btn--large">送信する</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <div class="footer__brand">
+                    <span class="footer__logo">KOMOREBI COFFEE</span>
+                    <p class="footer__copy">&copy; 2024 KOMOREBI COFFEE. All rights reserved.</p>
+                </div>
+                <nav class="footer__nav" aria-label="フッターナビゲーション">
+                    <ul class="footer__nav-list">
+                        <li><a href="#about">私たちについて</a></li>
+                        <li><a href="#menu">メニュー</a></li>
+                        <li><a href="#access">アクセス</a></li>
+                        <li><a href="#contact">お問い合わせ</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
